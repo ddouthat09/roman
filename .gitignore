@@ -1,0 +1,9 @@
+*.a
+*.cmake
+CMakeCache.txt
+CMakeFiles/
+Makefile
+Testing/
+config.h
+src/main
+tests/check_roman
