@@ -169,17 +169,59 @@ START_TEST(test_rom_Roman2Arabic_MMCMXCIX)
 }
 END_TEST
 
-START_TEST(test_rom_Roman2Arabic_IIII)
+START_TEST(test_rom_Roman2Arabic_IIII)  //technically illegal but still works
 {
   int a = rom_Roman2Arabic("IIII");
   ck_assert_int_eq(a,4);
 }
 END_TEST
 
-START_TEST(test_rom_Roman2Arabic_XXXX)
+START_TEST(test_rom_Roman2Arabic_XXXX)  //technically illegal but still work
 {
   int a = rom_Roman2Arabic("XXXX");
   ck_assert_int_eq(a,40);
+}
+END_TEST
+
+START_TEST(test_rom_Roman2Arabic_CCCC)  //technically illegal but still work
+{
+  int a = rom_Roman2Arabic("CCCC");
+  ck_assert_int_eq(a,400);
+}
+END_TEST
+
+START_TEST(test_rom_Roman2Arabic_qCCC)  //returns negative of invalid character
+{
+  int a = rom_Roman2Arabic("qCCC");
+  ck_assert_int_eq(a,-'q');
+}
+END_TEST
+
+START_TEST(test_rom_Roman2Arabic_CqCC)  //same as above but detected at next
+{
+  int a = rom_Roman2Arabic("CqCC");
+  ck_assert_int_eq(a,-'q');
+}
+END_TEST
+
+START_TEST(test_rom_Roman2Arabic_VV)  //technically illegal but still work
+{
+  int a = rom_Roman2Arabic("VV");
+  ck_assert_int_eq(a,10);
+}
+END_TEST
+
+START_TEST(test_rom_Roman2Arabic_LL)  //technically illegal but still work
+{
+  int a = rom_Roman2Arabic("LL");
+  ck_assert_int_eq(a,100);
+}
+END_TEST
+
+START_TEST(test_rom_Roman2Arabic_DD)  //technically illegal but still work
+{
+  int a = rom_Roman2Arabic("DD");
+  ck_assert_int_eq(a,1000);
 }
 END_TEST
 
@@ -218,6 +260,13 @@ Suite * roman_suite(void)
   tcase_add_test(tc_core, test_rom_Roman2Arabic_MMCMXCIX);
   tcase_add_test(tc_core, test_rom_Roman2Arabic_IIII);
   tcase_add_test(tc_core, test_rom_Roman2Arabic_XXXX);
+  tcase_add_test(tc_core, test_rom_Roman2Arabic_CCCC);
+  tcase_add_test(tc_core, test_rom_Roman2Arabic_qCCC);
+  tcase_add_test(tc_core, test_rom_Roman2Arabic_CqCC);
+  tcase_add_test(tc_core, test_rom_Roman2Arabic_VV);
+  tcase_add_test(tc_core, test_rom_Roman2Arabic_LL);
+  tcase_add_test(tc_core, test_rom_Roman2Arabic_DD);
+
   suite_add_tcase(s, tc_core);
 
   return s;

@@ -66,6 +66,8 @@ int rom_Roman2Arabic(char* r)
   for (char* work = r; *work; ++work) {
     int this = getArabicNumeral(*work);
     int next = getArabicNumeral(*(work+1));
+    if (this < 0) return -(*work);
+    if (next < 0) return -(*(work+1));
     if (this > last) {
       current = this - current;
     } else {
