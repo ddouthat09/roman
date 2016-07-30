@@ -15,9 +15,8 @@ int getArabicNumeral(char r);
  */
 #define R "MDCLXVI"
 /*
- * Local symbols visible only in this file
  * Last, extra value in array A is to catch string terminator; it returns
- * zero for terminator to assure that it is less than any normal value
+ * zero for terminator to assure that it is less than any valid value
  */
 static int A[sizeof(R)] = {1000, 500, 100, 50, 10, 5, 1, 0};
 

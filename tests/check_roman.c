@@ -148,6 +148,41 @@ START_TEST(test_rom_Roman2Arabic_MCM)
 }
 END_TEST
 
+START_TEST(test_rom_Roman2Arabic_CDXCIX)
+{
+  int a = rom_Roman2Arabic("CDXCIX");
+  ck_assert_int_eq(a,499);
+}
+END_TEST
+
+START_TEST(test_rom_Roman2Arabic_MCMXXXVI)
+{
+  int a = rom_Roman2Arabic("MCMXXXVI");
+  ck_assert_int_eq(a,1936);
+}
+END_TEST
+
+START_TEST(test_rom_Roman2Arabic_MMCMXCIX)
+{
+  int a = rom_Roman2Arabic("MMCMXCIX");
+  ck_assert_int_eq(a,2999);
+}
+END_TEST
+
+START_TEST(test_rom_Roman2Arabic_IIII)
+{
+  int a = rom_Roman2Arabic("IIII");
+  ck_assert_int_eq(a,4);
+}
+END_TEST
+
+START_TEST(test_rom_Roman2Arabic_XXXX)
+{
+  int a = rom_Roman2Arabic("XXXX");
+  ck_assert_int_eq(a,40);
+}
+END_TEST
+
 Suite * roman_suite(void)
 {
   Suite *s;
@@ -178,6 +213,11 @@ Suite * roman_suite(void)
   tcase_add_test(tc_core, test_getArabic_0);
   tcase_add_test(tc_core, test_rom_Roman2Arabic_MM);
   tcase_add_test(tc_core, test_rom_Roman2Arabic_MCM);
+  tcase_add_test(tc_core, test_rom_Roman2Arabic_CDXCIX);
+  tcase_add_test(tc_core, test_rom_Roman2Arabic_MCMXXXVI);
+  tcase_add_test(tc_core, test_rom_Roman2Arabic_MMCMXCIX);
+  tcase_add_test(tc_core, test_rom_Roman2Arabic_IIII);
+  tcase_add_test(tc_core, test_rom_Roman2Arabic_XXXX);
   suite_add_tcase(s, tc_core);
 
   return s;
