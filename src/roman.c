@@ -16,8 +16,10 @@ int getArabicNumeral(char r);
 #define R "MDCLXVI"
 /*
  * Local symbols visible only in this file
+ * Last, extra value in array A is to catch string terminator; it returns
+ * zero for terminator to assure that it is less than any normal value
  */
-static int A[sizeof(R)-1] = {1000, 500, 100, 50, 10, 5, 1};
+static int A[sizeof(R)] = {1000, 500, 100, 50, 10, 5, 1, 0};
 
 int getRomanNumeral(int a)
 {
@@ -50,8 +52,32 @@ int getRomanNumeral(int a)
 }
 int getArabicNumeral(char r)
 {
-  char* work;
-  if (!( work = strchr(R,toupper(r)) )) return -1;
-  return A[work-R];
+  char* work = strchr(R,toupper(r));
+  return work?A[work-R]:-1;
+}
+char* rom_Arabic2Roman(int a)
+{
+  return NULL;
+}
+int rom_Roman2Arabic(char* r)
+{
+  int out = 0;
+  int current = 0;
+  int last = 1000;
+  for (char* work = r; *work; ++work) {
+    int this = getArabicNumeral(*work);
+    int next = getArabicNumeral(*(work+1));
+    if (this > last) {
+      current = this - current;
+    } else {
+      current += this;
+    }
+    last = this;
+    if (this > next) {
+      out += current;
+      current = 0;
+    }
+  }
+  return out;
 }
 

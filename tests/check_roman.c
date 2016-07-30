@@ -127,6 +127,27 @@ START_TEST(test_getArabic_q)
 }
 END_TEST
 
+START_TEST(test_getArabic_0)
+{
+  int a = getArabicNumeral('\0');
+  ck_assert_int_eq(a,0);
+}
+END_TEST
+
+START_TEST(test_rom_Roman2Arabic_MM)
+{
+  int a = rom_Roman2Arabic("MM");
+  ck_assert_int_eq(a,2000);
+}
+END_TEST
+
+START_TEST(test_rom_Roman2Arabic_MCM)
+{
+  int a = rom_Roman2Arabic("mcm");
+  ck_assert_int_eq(a,1900);
+}
+END_TEST
+
 Suite * roman_suite(void)
 {
   Suite *s;
@@ -154,6 +175,9 @@ Suite * roman_suite(void)
   tcase_add_test(tc_core, test_getArabic_I);
   tcase_add_test(tc_core, test_getArabic_m);
   tcase_add_test(tc_core, test_getArabic_q);
+  tcase_add_test(tc_core, test_getArabic_0);
+  tcase_add_test(tc_core, test_rom_Roman2Arabic_MM);
+  tcase_add_test(tc_core, test_rom_Roman2Arabic_MCM);
   suite_add_tcase(s, tc_core);
 
   return s;
