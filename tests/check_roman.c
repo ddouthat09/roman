@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 
 #include <config.h>
@@ -204,6 +203,13 @@ START_TEST(test_rom_Roman2Arabic_CqCC)  //same as above but detected at next
 }
 END_TEST
 
+START_TEST(test_rom_Roman2Arabic_CMIII)  //same as above but detected at next
+{
+  int a = rom_Roman2Arabic("CMIII");
+  ck_assert_int_eq(a,903);
+}
+END_TEST
+
 START_TEST(test_rom_Roman2Arabic_VV)  //technically illegal but still work
 {
   int a = rom_Roman2Arabic("VV");
@@ -305,14 +311,6 @@ Suite * roman_suite(void)
   /* Core test case */
   tc_core = tcase_create("Core");
 
-  tcase_add_test(tc_core, test_getRoman1000);
-  tcase_add_test(tc_core, test_getRoman500);
-  tcase_add_test(tc_core, test_getRoman100);
-  tcase_add_test(tc_core, test_getRoman50);
-  tcase_add_test(tc_core, test_getRoman10);
-  tcase_add_test(tc_core, test_getRoman5);
-  tcase_add_test(tc_core, test_getRoman3);
-  tcase_add_test(tc_core, test_getRoman1);
   tcase_add_test(tc_core, test_getArabic_M);
   tcase_add_test(tc_core, test_getArabic_D);
   tcase_add_test(tc_core, test_getArabic_C);
@@ -332,7 +330,7 @@ Suite * roman_suite(void)
   tcase_add_test(tc_core, test_rom_Roman2Arabic_XXXX);
   tcase_add_test(tc_core, test_rom_Roman2Arabic_CCCC);
   tcase_add_test(tc_core, test_rom_Roman2Arabic_qCCC);
-  tcase_add_test(tc_core, test_rom_Roman2Arabic_CqCC);
+  tcase_add_test(tc_core, test_rom_Roman2Arabic_CMIII);
   tcase_add_test(tc_core, test_rom_Roman2Arabic_VV);
   tcase_add_test(tc_core, test_rom_Roman2Arabic_LL);
   tcase_add_test(tc_core, test_rom_Roman2Arabic_DD);
