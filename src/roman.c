@@ -9,6 +9,7 @@ int getArabicNumeral(char r);
  * Compiler and OS includes
  */
 #include <ctype.h>
+#include <stdlib.h>
 #include <string.h>
 /*
  * typedef's and #define's
@@ -54,9 +55,46 @@ int getArabicNumeral(char r)
   char* work = strchr(R,toupper(r));
   return work?A[work-R]:-1;
 }
+static struct {
+  int val;
+  char* rom;
+  int sz;
+} coder[] = {
+  {1,"I",1},
+  {4,"IV",2},
+  {5,"V",1},
+  {9,"IX",2},
+  {10,"X",1},
+  {40,"XL",2},
+  {50,"L",1},
+  {90,"XC",2},
+  {100,"C",1},
+  {400,"CD",2},
+  {500,"D",1},
+  {900,"CM",2},
+  {1000,"M",1}
+};
+#define CODER (sizeof(coder)/sizeof(coder[0]))
+static char* buf;
+static int bufsize;
+#define BUFSTEP 10
 char* rom_Arabic2Roman(int a)
 {
-  return NULL;
+  int ndx;
+  int sz = 0;
+  while (a > 0) {
+    for (ndx = CODER; ndx--;) {
+      if (a >= coder[ndx].val) break;
+    }
+    a -= coder[ndx].val;
+    if (( sz + coder[ndx].sz + 1 ) >= bufsize) {    //one extra for NUL
+      if (!( buf = (char*)realloc(buf, bufsize += BUFSTEP) )) return "";
+    }
+    strcpy(&buf[sz], coder[ndx].rom);
+    sz += coder[ndx].sz;
+  }
+  buf[sz] = '\0';
+  return buf;
 }
 int rom_Roman2Arabic(char* r)
 {

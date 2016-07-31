@@ -225,6 +225,76 @@ START_TEST(test_rom_Roman2Arabic_DD)  //technically illegal but still work
 }
 END_TEST
 
+START_TEST(test_rom_Arabic2Roman_1)
+{
+  char* a = rom_Arabic2Roman(1);
+  ck_assert_str_eq(a,"I");
+}
+END_TEST
+
+START_TEST(test_rom_Arabic2Roman_2)
+{
+  char* a = rom_Arabic2Roman(2);
+  ck_assert_str_eq(a,"II");
+}
+END_TEST
+
+START_TEST(test_rom_Arabic2Roman_3)
+{
+  char* a = rom_Arabic2Roman(3);
+  ck_assert_str_eq(a,"III");
+}
+END_TEST
+
+START_TEST(test_rom_Arabic2Roman_4)
+{
+  char* a = rom_Arabic2Roman(4);
+  ck_assert_str_eq(a,"IV");
+}
+END_TEST
+
+START_TEST(test_rom_Arabic2Roman_9)
+{
+  char* a = rom_Arabic2Roman(9);
+  ck_assert_str_eq(a,"IX");
+}
+END_TEST
+
+START_TEST(test_rom_Arabic2Roman_49)
+{
+  char* a = rom_Arabic2Roman(49);
+  ck_assert_str_eq(a,"XLIX");
+}
+END_TEST
+
+START_TEST(test_rom_Arabic2Roman_99)
+{
+  char* a = rom_Arabic2Roman(99);
+  ck_assert_str_eq(a,"XCIX");
+}
+END_TEST
+
+START_TEST(test_rom_Arabic2Roman_499)
+{
+  char* a = rom_Arabic2Roman(499);
+  ck_assert_str_eq(a,"CDXCIX");
+}
+END_TEST
+
+START_TEST(test_rom_Arabic2Roman_999)
+{
+  char* a = rom_Arabic2Roman(999);
+  ck_assert_str_eq(a,"CMXCIX");
+}
+END_TEST
+
+START_TEST(test_rom_Arabic2Roman_1999)
+{
+  char* a = rom_Arabic2Roman(1999);
+  ck_assert_str_eq(a,"MCMXCIX");
+}
+END_TEST
+
 Suite * roman_suite(void)
 {
   Suite *s;
@@ -266,6 +336,16 @@ Suite * roman_suite(void)
   tcase_add_test(tc_core, test_rom_Roman2Arabic_VV);
   tcase_add_test(tc_core, test_rom_Roman2Arabic_LL);
   tcase_add_test(tc_core, test_rom_Roman2Arabic_DD);
+  tcase_add_test(tc_core, test_rom_Arabic2Roman_1);
+  tcase_add_test(tc_core, test_rom_Arabic2Roman_2);
+  tcase_add_test(tc_core, test_rom_Arabic2Roman_3);
+  tcase_add_test(tc_core, test_rom_Arabic2Roman_4);
+  tcase_add_test(tc_core, test_rom_Arabic2Roman_9);
+  tcase_add_test(tc_core, test_rom_Arabic2Roman_49);
+  tcase_add_test(tc_core, test_rom_Arabic2Roman_99);
+  tcase_add_test(tc_core, test_rom_Arabic2Roman_499);
+  tcase_add_test(tc_core, test_rom_Arabic2Roman_999);
+  tcase_add_test(tc_core, test_rom_Arabic2Roman_1999);
 
   suite_add_tcase(s, tc_core);
 
