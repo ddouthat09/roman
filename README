@@ -1,0 +1,1 @@
+I was not able to get cmake to set up target "test:" in the top Makefileto handle the testing executable.  This same bug was present in the examplethat came with the check installation. It may be peculiar to MAC & OSX. I didnot spend much time to debug this.  Instead, I used the following command:$ make && tests/check_roman
