@@ -99,17 +99,17 @@ int rom_Roman2Arabic(char* r)
   int current = 0;  //accumulator for intermediate results
   int last = 1000;  //Arabic value of last Roman numeral
   for (char* work = r; *work; ++work) {
-    int this = getArabicNumeral(*work);
+    int This = getArabicNumeral(*work);
     int next = getArabicNumeral(*(work+1));
-    if (this < 0) return -(*work);
+    if (This < 0) return -(*work);
     if (next < 0) return -(*(work+1));
-    if (this > last) { //Roman subtractive token pair?
-      current = this - last; //yes, do the subtraction
+    if (This > last) { //Roman subtractive token pair?
+      current = This - last; //yes, do the subtraction
     } else {
-      current += this;  //nope, just cumulate
+      current += This;  //nope, just cumulate
     }
-    last = this;
-    if (this > next) {
+    last = This;
+    if (This > next) {
       out += current;
       current = 0;
     }
